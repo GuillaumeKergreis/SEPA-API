@@ -1,2 +1,7 @@
 *.class
 *.log
+/.idea/
+/.bsp/
+/project/target/
+/target/
+/project/project/target/config-classes/
