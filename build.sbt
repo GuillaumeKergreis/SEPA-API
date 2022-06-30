@@ -4,25 +4,25 @@ version := "0.1"
 
 scalaVersion := "2.13.8"
 
-libraryDependencies += "org.typelevel" %% "cats-core" % "2.7.0"
-libraryDependencies += "org.typelevel" %% "cats-effect" % "3.3.5"
+libraryDependencies += "org.typelevel" %% "cats-core" % "2.8.0"
+libraryDependencies += "org.typelevel" %% "cats-effect" % "3.3.12"
 
 addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.1")
 
-val http4sVersion = "0.23.10"
+val http4sVersion = "0.23.12"
 libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-dsl" % http4sVersion,
   "org.http4s" %% "http4s-blaze-server" % http4sVersion,
-  "org.http4s" %% "http4s-blaze-client" % http4sVersion
+  "org.http4s" %% "http4s-blaze-client" % http4sVersion,
+  "org.http4s" %% "http4s-circe" % http4sVersion
 )
 
-val tapirVersion = "0.19.0-M4"
+val tapirVersion = "1.0.1"
 libraryDependencies ++= Seq(
   "com.softwaremill.sttp.tapir" %% "tapir-http4s-server" % tapirVersion,
+  "com.softwaremill.sttp.tapir" %% "tapir-http4s-client" % tapirVersion,
   "com.softwaremill.sttp.tapir" %% "tapir-openapi-docs" % tapirVersion,
-  "com.softwaremill.sttp.tapir" %% "tapir-openapi-circe-yaml" % tapirVersion,
-  "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-http4s" % tapirVersion,
-  "com.softwaremill.sttp.tapir" %% "tapir-redoc-http4s" % tapirVersion,
+  "com.softwaremill.sttp.tapir" %% "tapir-swagger-ui-bundle" % tapirVersion,
   "com.softwaremill.sttp.tapir" %% "tapir-json-circe" % tapirVersion,
   "com.softwaremill.sttp.tapir" %% "tapir-cats" % tapirVersion
 )
@@ -31,6 +31,12 @@ lazy val doobieVersion = "1.0.0-RC2"
 libraryDependencies ++= Seq(
   "org.tpolecat" %% "doobie-core" % doobieVersion,
   "org.tpolecat" %% "doobie-postgres" % doobieVersion
+)
+
+lazy val scalatestVersion = "3.2.12"
+libraryDependencies ++= Seq(
+  "org.scalactic" %% "scalactic" % scalatestVersion,
+  "org.scalatest" %% "scalatest" % scalatestVersion % "test"
 )
 
 

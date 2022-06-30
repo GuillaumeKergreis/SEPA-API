@@ -1,7 +1,5 @@
-package model
+package domain
 
-import cats.implicits.toBifunctorOps
-import error.SepaCreditTransferParsingError
 import generated.{AccountIdentification4Choice, ActiveCurrencyAndAmount, BranchAndFinancialInstitutionIdentification4, CLRG, CashAccount16, CreditTransferTransactionInformation11, Document, FIToFICustomerCreditTransferV02, FinancialInstitutionIdentification7, GroupHeader33, PartyIdentification32, PaymentIdentification3, PaymentTypeInformation21, Purpose2Choice, RemittanceInformation5, SLEV, ServiceLevel8Choice, SettlementInformation13, defaultScope}
 import scalaxb.DataRecord
 import scalaxb.DataRecord.__StringXMLFormat
@@ -83,7 +81,7 @@ case object SepaCreditTransferMessage {
       instigatingAgent = document.FIToFICstmrCdtTrf.GrpHdr.InstgAgt.flatMap(_.FinInstnId.BIC.map(Bic)),
       instigatedAgent = document.FIToFICstmrCdtTrf.GrpHdr.InstdAgt.flatMap(_.FinInstnId.BIC.map(Bic)),
       sepaCreditTransferTransactions = document.FIToFICstmrCdtTrf.CdtTrfTxInf.map(transaction =>
-        SepaCreditTransferTransaction(
+        domain.SepaCreditTransferTransaction(
           instructionId = transaction.PmtId.InstrId,
           endToEndId = transaction.PmtId.EndToEndId,
           sepaTxId = transaction.PmtId.TxId,
